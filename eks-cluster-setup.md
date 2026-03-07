@@ -175,33 +175,34 @@ kubectl version
 #### **5. Get EKS Cluster Version (AWS CLI)**
 
 ```bash
-aws eks describe-cluster \
+ aws eks describe-cluster \
   --name eksupgrade \
   --region us-east-1 \
   --query "cluster.version"
 ```
- EKS nodegroup version
+## EKS nodegroup version
+ 
 aws eks describe-nodegroup \
 --cluster-name eksupgrade \
 --nodegroup-name eksupgrade-ng-private \
 --region us-east-1 \
 --query "nodegroup.version"
 ```
-  EKS nogegroup AMI release version
+  ## EKS nogegroup AMI release version
 aws eks describe-nodegroup \
 --cluster-name eksupgrade \
 --nodegroup-name eksupgrade-ng-private \
 --region us-east-1 \
 --query "nodegroup.releaseVersion"
 ```
-   EKS nodegroup AMI type:
+  ## EKS nodegroup AMI type:
 aws eks describe-nodegroup \
 --cluster-name eksupgrade \
 --nodegroup-name eksupgrade-ng-private \
 --region us-east-1 \
 --query "nodegroup.amiType"
 ```
-EKS nodes details
+## EKS nodes details
 kubectl get nodes -A -o wide
 ````
 `# Lists all AWS-managed add-ons installed in the EKS cluster
@@ -209,7 +210,6 @@ kubectl get nodes -A -o wide
   --cluster-name eksupgrade \
   --region us-east-1
 
-VPC-CNI
 # Shows detailed information about the add-on including version
   aws eks describe-addon-versions \
   --cluster-name eksupgrade \
