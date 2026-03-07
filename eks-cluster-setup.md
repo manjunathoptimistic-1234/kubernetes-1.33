@@ -154,6 +154,8 @@ Confirms that system pods inside the cluster are running properly.
 
 ```bash
 kubectl get pods -A
+kubectl get svc -A
+kubectl get sa -A
 ```
 
 #### **3. Check Cluster Info**
@@ -178,8 +180,57 @@ aws eks describe-cluster \
   --region us-east-1 \
   --query "cluster.version"
 ```
+ EKS nodegroup version
+aws eks describe-nodegroup \
+--cluster-name eksupgrade \
+--nodegroup-name eksupgrade-ng-private \
+--region us-east-1 \
+--query "nodegroup.version"
+```
+  EKS nogegroup AMI release version
+aws eks describe-nodegroup \
+--cluster-name eksupgrade \
+--nodegroup-name eksupgrade-ng-private \
+--region us-east-1 \
+--query "nodegroup.releaseVersion"
+```
+   EKS nodegroup AMI type:
+aws eks describe-nodegroup \
+--cluster-name eksupgrade \
+--nodegroup-name eksupgrade-ng-private \
+--region us-east-1 \
+--query "nodegroup.amiType"
+```
+EKS nodes details
+kubectl get nodes -A -o wide
+````
+`# Lists all AWS-managed add-ons installed in the EKS cluster
+  aws eks list-addons \
+  --cluster-name eksupgrade \
+  --region us-east-1
 
----
+VPC-CNI
+# Shows detailed information about the add-on including version
+  aws eks describe-addon-versions \
+  --cluster-name eksupgrade \
+  --addon-name vpc-cni \
+  --region us-east-1
+        or
+aws eks describe-addon \
+--cluster-name eksupgrade \
+--addon-name vpc-cni \
+--region us-east-1 \
+--query "addon.addonVersion"
+
+## to get add-ons version compatible with eks version 1.33
+aws eks describe-addon-versions \
+--addon-name vpc-cni \
+--kubernetes-version 1.33 \
+--region us-east-1 \
+--query "addons[].addonVersions[].addonVersion"
+
+
+note:try these commands for other addons like kube-proxy , aws-ebs-csi-driver and metrics-server 
 
 ## ## **5. Delete the EKS Cluster**
 
