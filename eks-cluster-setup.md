@@ -233,7 +233,7 @@ aws eks describe-addon-versions \
 note:try these commands for other addons like kube-proxy , aws-ebs-csi-driver and metrics-server 
 
 ##install arogocd
-#deploy applications such as guestbook , sock-shop (need pvc)
+#deploy applications such as guestbook & sock-shop (need pvc so have storage class configure) 
 ## observe setup
 ## kubent by motoffo :Kube No Trouble (kubent) is a simple tool to check whether you're using any of these API versions in your cluster and therefore should upgrade your workloads first, before upgrading your Kubernetes cluster. 
 https://aws.amazon.com/marketplace/pp/prodview-4cjwybijlwyl4
