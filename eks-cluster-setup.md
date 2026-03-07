@@ -234,6 +234,22 @@ note:try these commands for other addons like kube-proxy , aws-ebs-csi-driver an
 
 ##install arogocd
 #deploy applications such as guestbook , sock-shop (need pvc)
+## observe setup
+## kubent by motoffo :Kube No Trouble (kubent) is a simple tool to check whether you're using any of these API versions in your cluster and therefore should upgrade your workloads first, before upgrading your Kubernetes cluster. 
+https://aws.amazon.com/marketplace/pp/prodview-4cjwybijlwyl4
+note: discuss with team to purchase atleast during upgrades
+
+##install kubent through github
+sh -c "$(curl -sSL 'https://git.io/install-kubent')"
+
+kubent
+kubent --target-version 1.33 --helm3 > kubent-data.txt # to store the kubent report inside kubent-data.txt  (also scans helm3)
+
+
+
+
+
+
 ## ## **5. Delete the EKS Cluster**
 
 ```bash
