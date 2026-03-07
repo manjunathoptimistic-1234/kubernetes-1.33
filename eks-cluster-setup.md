@@ -232,6 +232,8 @@ aws eks describe-addon-versions \
 
 note:try these commands for other addons like kube-proxy , aws-ebs-csi-driver and metrics-server 
 
+##install arogocd
+#deploy applications such as guestbook , sock-shop (need pvc)
 ## ## **5. Delete the EKS Cluster**
 
 ```bash
