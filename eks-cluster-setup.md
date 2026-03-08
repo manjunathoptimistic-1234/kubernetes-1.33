@@ -232,8 +232,19 @@ aws eks describe-addon-versions \
 
 note:try these commands for other addons like kube-proxy , aws-ebs-csi-driver and metrics-server 
 
-##install arogocd
-#deploy applications such as guestbook & sock-shop (need pvc so have storage class configure) 
+## install arogocd 
+# deploy applications such as guestbook & sock-shop (need pvc so have storage class configure) 
+## edit service ip to loadbalancer
+# intsall kong ingress and deploy kong-ingress yaml(inside github) resources using argocd
+helm repo add kong https://charts.konghq.com
+helm repo update
+helm install kong kong/kong   --namespace kong   --create-namespace   --set ingressController.enabled=true   --set proxy.type=LoadBalancer
+kubectl get svc -kong
+edit svc back to cluster ip
+create kong ingress resource attaching the svc
+kubectl get ingress
+acces through lb
+
 ## observe setup
 ## kubent by motoffo :Kube No Trouble (kubent) is a simple tool to check whether you're using any of these API versions in your cluster and therefore should upgrade your workloads first, before upgrading your Kubernetes cluster. 
 https://aws.amazon.com/marketplace/pp/prodview-4cjwybijlwyl4
@@ -246,7 +257,7 @@ kubent
 kubent --target-version 1.33 --helm3 > kubent-data.txt # to store the kubent report inside kubent-data.txt  (also scans helm3)
 
 
-
+#install kong-ingress 
 
 
 
