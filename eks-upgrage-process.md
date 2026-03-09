@@ -99,7 +99,7 @@ kubectl get daemonsets --all-namespaces
 
 # Check statefulsets
 kubectl get statefulsets --all-namespaces
-
+https://claude.ai/share/69b6296c-7e4b-4df2-b750-effe4bd9eeb2 - claude AI for k8s upgrade
 ---
 ## ## **2. Upgrade Node Groups / Worker Nodes / Fargate**
 
@@ -237,7 +237,7 @@ kubectl get pods -n kube-system
 ```bash
 kubectl version --short
 ```
----
+https://claude.ai/share/69b6296c-7e4b-4df2-b750-effe4bd9eeb2
 
 # **6. Final Verification Test**
 
