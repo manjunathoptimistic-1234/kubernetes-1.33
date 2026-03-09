@@ -39,10 +39,68 @@ aws eks describe-cluster \
 
 ```bash
 kubectl version --short
-```
+
+
+# Check all pods across all namespaces
+kubectl get pods --all-namespaces
+
+# Look for any pods not in Running/Completed state
+kubectl get pods --all-namespaces | grep -v "Running\|Completed"
+
+# Check coredns
+kubectl get pods -n kube-system | grep coredns
+
+# Check kube-proxy
+kubectl get pods -n kube-system | grep kube-proxy
+
+# Check vpc-cni
+kubectl get pods -n kube-system | grep aws-node
+
+# Check all add-on statuses via AWS CLI
+aws eks list-addons --cluster-name <cluster-name>
+aws eks describe-addon --cluster-name <cluster-name> --addon-name coredns
+
+# Check componentstatus
+kubectl get componentstatuses
+
+# Check kube-system namespace
+kubectl get all -n kube-system
+
+# Look for warnings or errors
+kubectl get events --all-namespaces --field-selector type=Warning
+
+# Sort by time
+kubectl get events --all-namespaces --sort-by='.lastTimestamp'
+
+##Check Node Health in Detail
+# Describe each node to check conditions
+kubectl describe nodes | grep -A5 "Conditions:"
+
+# Check node resource usage
+kubectl top nodes
+
+# Check node resource usage
+kubectl top nodes
+
+##Check EKS Cluster Health via AWS CLI
+aws eks describe-cluster \
+  --name <cluster-name> \
+  --query 'cluster.health'
+
+# Check cluster insights for any issues
+aws eks list-insights \
+  --cluster-name <cluster-name>
+
+# Check deployments
+kubectl get deployments --all-namespaces
+
+# Check daemonsets
+kubectl get daemonsets --all-namespaces
+
+# Check statefulsets
+kubectl get statefulsets --all-namespaces
 
 ---
-
 ## ## **2. Upgrade Node Groups / Worker Nodes / Fargate**
 
 ### List node groups:
